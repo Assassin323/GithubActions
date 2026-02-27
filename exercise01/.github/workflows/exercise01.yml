@@ -1,0 +1,26 @@
+name: Deployment 01 for exercise 01
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'exercise01/**'
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        defaults:
+          run:
+            working-directory: ./exercise01
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3
+            - name: Install dependencies
+              run: npm i
+            - name: npm run lint
+              run: npm run lint 
+            - name: Test Code
+              run: npm tests 
+            - name: Build Code 
+              run: npm run build 
+            - name: Deploy Code 
+              run: echo "Deploy code.."
